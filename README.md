@@ -3,7 +3,7 @@
 
 Shop Kentaur KZ - это мобильное приложение, представляющее собой, каталог товаров для конного спорта магазина Kentaur с удобной, интуитивно понятной навигацией.
 
-<img src="https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/8301daec-45c7-4459-b0e5-339ab91e5535" width="300" height="650"> 
+<img src="https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/b924fb54-b113-4cc6-86d0-eb0ed7867a20" width="300" height="650"> 
 
 
 ## Функциональность
@@ -12,7 +12,7 @@ Shop Kentaur KZ - это мобильное приложение, предста
 + приветственное сообщение и список представленных категорий
 + возможность перейти напрямую в Инстаграм магазина из приложения
 
-![kentaur_main](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/f062508d-af35-45da-9754-bb01a1d39e7d)
+![kentaur_main](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/fcf6791b-20de-470f-a924-b10108512c3e)
 
   
 ### Страница для просмотра информации по категориям товаров : 
@@ -23,21 +23,22 @@ Shop Kentaur KZ - это мобильное приложение, предста
 
 
 #### Амуниция для лошади 
-![kentaur_for_horse](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/2045f31b-a9de-451b-9b98-f9c3915b4b1f)
 
-![for_horse_zoom](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/57cd8e20-b55e-46e8-9473-9397f4981238)
+![kentaur_for_horse](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/9676511d-cbb0-4d8c-85e6-66a80bfdd2a5)
+
+![for_horse_zoom](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/c4d139c5-10d0-4fd9-9801-a0a8b98022ed)
 
 
 #### Экипировка для всадника
 
-![for-rider](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/85202033-aebe-492b-a956-5aae3c688b5e)
+![for-rider](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/9f7304bf-bf02-429a-ab14-6f58e5b91626)
 
-![for-RIDER-ZOOM](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/998c3e81-7c97-4d96-b929-b7fdb0b48014)
+![for-RIDER-ZOOM](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/2114cf25-f594-4206-b6ab-89489ddfb5d6)
 
 
 ####  Кормовые добавки для лошади
 
-![FOR_FEEDING](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/4994d0a6-2f1f-449f-94e3-b744e1b06814)
+![FOR_FEEDING](https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/4e667845-56d8-4447-9f0c-95376e710e70)
 
 
 ## Зависимости
