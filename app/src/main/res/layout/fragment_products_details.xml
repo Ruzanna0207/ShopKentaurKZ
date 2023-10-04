@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#95000000">
+
+    <ImageView
+        android:id="@+id/clickInterceptor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#95000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/clickInterceptor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/pic"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="@+id/name_product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/jura_bold"
+                android:maxWidth="330dp"
+                android:text="Tattini стан ногавок"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/image_product"-->
+            <!--                android:layout_width="300dp"-->
+            <!--                android:layout_height="300dp"-->
+            <!--                android:padding="5dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/name_product" />-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/image_product"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_product"
+                tools:listitem="@layout/for_adapter_details_images" />
+
+            <ScrollView
+                android:id="@+id/scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                app:layout_constraintEnd_toEndOf="@+id/image_product"
+                app:layout_constraintStart_toStartOf="@id/image_product"
+                app:layout_constraintTop_toBottomOf="@+id/image_product">
+
+                <TextView
+                    android:id="@+id/description_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/neucha"
+                    android:maxWidth="350dp"
+                    android:padding="5dp"
+                    android:text="xxx xxxxx xx xxxxxxxxx xxx xxxx xxx xxxxx xx xxxxxxxxx xxx xxxxxx xxxx xxx xxxxxxxx xxxxx xxxx xxxxx xx xxxxxxxxx xxx xxxxx xx xxxxxxxxx xxx xxxx xxx xxxxx xx xxxxxxxxx xxx xxxxxx xxxx xxx xxxxxxxx xxxxx xxxx xxxxx xx xxxxxxxxx xxx xxxxx xx xxxxxxxxx xxx xxxx xxx xxxxx xx xxxxxxxxx xxx xxxxxx xxxx xxx xxxxxxxx xxxxx xxxx xxxxx xx xxxxxxxxx "
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="21sp" />
+            </ScrollView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scroll">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/scroll">
+
+                    <TextView
+                        android:id="@+id/compound_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/jura"
+                        android:textColor="@color/black"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/price_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/neucha"
+                        android:gravity="end"
+                        android:text="10000тг"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/black"
+                        android:textSize="27sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
