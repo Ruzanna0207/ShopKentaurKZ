@@ -52,3 +52,5 @@ Shop Kentaur KZ - это мобильное приложение, предста
 
 > Используемый API : FireBase
  * * *
+
+ <img src="https://github.com/Ruzanna0207/ShopKentaurKZ/assets/135521897/fddf8dc9-678d-413c-8dec-75d49df6c212" width="300" height="650"> 
