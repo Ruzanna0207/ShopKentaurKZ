@@ -11,45 +11,40 @@ class ForFeedingRepositoryImpl : ForFeedingRepository {
 
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
+    //получ-е товаров категории
     override suspend fun getFeeding(): List<FeedingCategories> {
-        try {
-            val snapshot = database.child("forFeedingHorse").get().await()
+        return try {
+            getInfoFromFirebase()
+        } catch (e: Exception) {
+            Log.e("shop", "Ошибка", e)
+            emptyList()
+        }
+    }
 
-            val categoriesList = mutableListOf<FeedingCategories>()
-
-            if (snapshot.exists()) {
-                for (categorySnapshot in snapshot.children) {
-                    val category = categorySnapshot.getValue(FeedingCategories::class.java)
-                    category?.let {
-                        categoriesList.add(it)
-                    }
-                }
-            }
-            return categoriesList
+    //получ-е тегов
+    override suspend fun getTags(): List<String> {
+        return try {
+            getInfoFromFirebase().flatMap { it.categories ?: emptyList() }
         } catch (e: Exception) {
             Log.e("shop", "Ошибка", e)
             return emptyList()
         }
     }
 
-    override suspend fun getTags(): List<String> {
-        try {
-            val snapshot = database.child("forFeedingHorse").get().await()
+    //функция обращ-ся к Firebase и получает данные
+    private suspend fun getInfoFromFirebase(): MutableList<FeedingCategories> {
+        val snapshot = database.child("forFeedingHorse").get().await()
 
-            val categoriesList = mutableListOf<FeedingCategories>()
+        val categoriesList = mutableListOf<FeedingCategories>()
 
-            if (snapshot.exists()) {
-                for (categorySnapshot in snapshot.children) {
-                    val category = categorySnapshot.getValue(FeedingCategories::class.java)
-                    category?.let {
-                        categoriesList.add(it)
-                    }
+        if (snapshot.exists()) {
+            for (categorySnapshot in snapshot.children) {
+                val category = categorySnapshot.getValue(FeedingCategories::class.java)
+                category?.let {
+                    categoriesList.add(it)
                 }
             }
-            return categoriesList.flatMap { it.categories ?: emptyList() }
-        } catch (e: Exception) {
-            Log.e("shop", "Ошибка", e)
-            return emptyList()
         }
+        return categoriesList
     }
 }

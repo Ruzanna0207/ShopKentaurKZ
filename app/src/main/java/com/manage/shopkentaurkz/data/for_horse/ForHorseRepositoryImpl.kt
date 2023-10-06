@@ -11,45 +11,41 @@ class ForHorseRepositoryImpl : ForHorseRepository {
 
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
+    //получ-е товаров категории
     override suspend fun getCategoriesForHorse(): List<ForHorseProduct> {
-        try {
-            val snapshot = database.child("forHorse").get().await()
+        return try {
+            getInfoFromFirebase()
+        } catch (e: Exception) {
+            Log.e("shop", "Ошибка", e)
+            emptyList()
+        }
+    }
 
-            val categoriesList = mutableListOf<ForHorseProduct>()
-
-            if (snapshot.exists()) {
-                for (categorySnapshot in snapshot.children) {
-                    val category = categorySnapshot.getValue(ForHorseProduct::class.java)
-                    category?.let {
-                        categoriesList.add(it)
-                    }
-                }
+    //получ-е тегов
+    override suspend fun getTags(): List<String> {
+        return try {
+            getInfoFromFirebase().flatMap { products ->
+                products.categories ?: emptyList()
             }
-            return categoriesList
         } catch (e: Exception) {
             Log.e("shop", "Ошибка", e)
             return emptyList()
         }
     }
 
-    override suspend fun getTags(): List<String> {
-        try {
-            val snapshot = database.child("forHorse").get().await()
+    //функция обращ-ся к Firebase и получает данные
+    private suspend fun getInfoFromFirebase(): MutableList<ForHorseProduct> {
+        val snapshot = database.child("forHorse").get().await()
 
-            val categoriesList = mutableListOf<ForHorseProduct>()
-
-            if (snapshot.exists()) {
-                for (categorySnapshot in snapshot.children) {
-                    val category = categorySnapshot.getValue(ForHorseProduct::class.java)
-                    category?.let {
-                        categoriesList.add(it)
-                    }
+        val categoriesList = mutableListOf<ForHorseProduct>()
+        if (snapshot.exists()) {
+            for (categorySnapshot in snapshot.children) {
+                val category = categorySnapshot.getValue(ForHorseProduct::class.java)
+                category?.let {
+                    categoriesList.add(it)
                 }
             }
-            return categoriesList.flatMap { it.categories ?: emptyList() }
-        } catch (e: Exception) {
-            Log.e("shop", "Ошибка", e)
-            return emptyList()
         }
+        return categoriesList
     }
 }

@@ -11,46 +11,39 @@ class ForRiderRepositoryImpl : ForRiderRepository {
 
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
+    //получ-е товаров категории
     override suspend fun getCategoriesForRider(): List<ForRiderProduct> {
-
-        try {
-            val snapshot = database.child("forRider").get().await()
-
-            val categoriesList = mutableListOf<ForRiderProduct>()
-
-            if (snapshot.exists()) {
-                for (categorySnapshot in snapshot.children) {
-                    val category = categorySnapshot.getValue(ForRiderProduct::class.java)
-                    category?.let {
-                        categoriesList.add(it)
-                    }
-                }
-            }
-            return categoriesList
+        return try {
+            getInfoFromFirebase()
         } catch (e: Exception) {
             Log.e("shop", "Ошибка", e)
-            return emptyList()
+            emptyList()
         }
     }
 
+    //получ-е тегов
     override suspend fun getTags(): List<String> {
-        try {
-            val snapshot = database.child("forRider").get().await()
-
-            val categoriesList = mutableListOf<ForRiderProduct>()
-
-            if (snapshot.exists()) {
-                for (categorySnapshot in snapshot.children) {
-                    val category = categorySnapshot.getValue(ForRiderProduct::class.java)
-                    category?.let {
-                        categoriesList.add(it)
-                    }
-                }
-            }
-            return categoriesList.flatMap { it.categories ?: emptyList() }
+        return try {
+            getInfoFromFirebase().flatMap { it.categories ?: emptyList() }
         } catch (e: Exception) {
             Log.e("shop", "Ошибка", e)
-            return emptyList()
+            emptyList()
         }
+    }
+
+    //функция обращ-ся к Firebase и получает данные
+    private suspend fun getInfoFromFirebase(): MutableList<ForRiderProduct> {
+        val snapshot = database.child("forRider").get().await()
+
+        val categoriesList = mutableListOf<ForRiderProduct>()
+        if (snapshot.exists()) {
+            for (categorySnapshot in snapshot.children) {
+                val category = categorySnapshot.getValue(ForRiderProduct::class.java)
+                category?.let {
+                    categoriesList.add(it)
+                }
+            }
+        }
+        return categoriesList
     }
 }
