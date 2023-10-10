@@ -4,6 +4,6 @@ import com.manage.shopkentaurkz.core.data_classes.ProductCategories
 
 interface MainPageRepository {
 
-    suspend fun getCategories() : List<ProductCategories>
+    suspend fun getCategories(): List<ProductCategories>
 
 }

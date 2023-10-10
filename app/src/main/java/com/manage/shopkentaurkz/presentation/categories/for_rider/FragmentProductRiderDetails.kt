@@ -54,7 +54,7 @@ class FragmentProductRiderDetails : Fragment() {
             secondFragment.arguments = bundleOf("detail" to details?.image)
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frame, secondFragment)
+                .add(R.id.frame, secondFragment)
                 .addToBackStack(null)
                 .commit()
         }
@@ -71,7 +71,7 @@ class FragmentProductRiderDetails : Fragment() {
             secondFragment.arguments = bundleOf("detail" to it)
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.frame, secondFragment)
+                .add(R.id.frame, secondFragment)
                 .addToBackStack(null)
                 .commit()
         }

@@ -42,7 +42,6 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
 
     //опред-ие основного ui, загрузка значений
     private fun setupViews() = with(binding) {
-
         Glide.with(requireActivity())
             .load("https://www.dropbox.com/scl/fi/xz7eytszbt94yuo5ar4uj/1695312960921.png?rlkey=0tgpv6s8fc7nlitgpgftquyfs&raw=1")
             .optionalCenterCrop()
@@ -59,8 +58,8 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
         }
     }
 
+    //получ-е списка доступных групп товаров
     private fun getAllCategories() {
-
         viewModel.currentCategories.observe(viewLifecycleOwner) { allCats ->
             adapter = MainPageAdapter(allCats, this)
             binding.mainRecView.adapter = adapter
@@ -71,13 +70,12 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
     }
 
     private fun stopAnimation() = with(binding) {
-
         animationViewMain.cancelAnimation()
         animationViewMain.visibility = View.GONE
     }
 
+    //при нажатии на карточку группы товаров
     override fun onClick(tag: String) {
-
         when {
             (tag == "Все для лошади") -> {
                 requireActivity().supportFragmentManager.beginTransaction()
@@ -106,9 +104,7 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
 
     // Открывается Instagram
     private fun openInstagramProfile() {
-
         val instagramUri = Uri.parse("https://www.instagram.com/kentaur.kz/")
-
         // интент для открытия Instagram
         val intent = Intent(Intent.ACTION_VIEW, instagramUri)
 

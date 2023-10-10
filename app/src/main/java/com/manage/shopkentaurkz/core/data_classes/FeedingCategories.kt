@@ -2,6 +2,8 @@ package com.manage.shopkentaurkz.core.data_classes
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Ignore
+import com.manage.shopkentaurkz.core.roomDataBase.for_feeding.ForFeedingEntity
 
 data class FeedingCategories(
     val name: String?,
@@ -41,5 +43,9 @@ data class FeedingCategories(
         override fun newArray(size: Int): Array<FeedingCategories?> {
             return arrayOfNulls(size)
         }
+    }
+    @Ignore
+    fun toFeedingEntity(): ForFeedingEntity {
+        return ForFeedingEntity(0, name!!, description!!, compound!!, price, image!!, categories!!)
     }
 }

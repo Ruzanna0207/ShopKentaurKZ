@@ -15,7 +15,7 @@ import retrofit2.HttpException
 
 class ForRiderViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repositoryRider = ForRiderRepositoryImpl()
+    private val repositoryRider = ForRiderRepositoryImpl(application)
 
     private var _forRider = MutableLiveData<List<ForRiderProduct?>>()
     val forRider: LiveData<List<ForRiderProduct?>> = _forRider
@@ -27,6 +27,7 @@ class ForRiderViewModel(application: Application) : AndroidViewModel(application
     var error = MutableLiveData<String>()
 
 
+    //получ-е товаров категории
     fun getProductsForRider() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -57,7 +58,7 @@ class ForRiderViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-
+//получ-е тегов
     fun getTagsRider() {
         viewModelScope.launch(Dispatchers.IO) {
             try {

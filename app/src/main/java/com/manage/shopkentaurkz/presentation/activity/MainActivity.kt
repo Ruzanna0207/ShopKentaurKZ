@@ -1,5 +1,6 @@
 package com.manage.shopkentaurkz.presentation.activity
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.manage.shopkentaurkz.R
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.frame, MainPageFragment())
             .commit()
 
-    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT //фиксированная портретная ориентация экрана
-    
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT //фиксированная портретная ориентация экрана
+
     }
 }

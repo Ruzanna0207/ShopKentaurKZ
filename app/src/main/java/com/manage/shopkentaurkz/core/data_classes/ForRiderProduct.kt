@@ -2,6 +2,8 @@ package com.manage.shopkentaurkz.core.data_classes
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Ignore
+import com.manage.shopkentaurkz.core.roomDataBase.for_rider.ForRiderEntity
 
 data class ForRiderProduct(
     val name: String?,
@@ -19,8 +21,7 @@ data class ForRiderProduct(
         parcel.readDouble(),
         parcel.createStringArrayList(),
         parcel.createStringArrayList()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
@@ -42,5 +43,9 @@ data class ForRiderProduct(
         override fun newArray(size: Int): Array<ForRiderProduct?> {
             return arrayOfNulls(size)
         }
+    }
+    @Ignore
+    fun toRiderEntity(): ForRiderEntity {
+        return ForRiderEntity(0, name!!, description!!, sizes!!, price, image!!, categories!!)
     }
 }

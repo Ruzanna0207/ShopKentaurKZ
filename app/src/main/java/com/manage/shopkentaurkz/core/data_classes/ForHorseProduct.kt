@@ -2,6 +2,8 @@ package com.manage.shopkentaurkz.core.data_classes
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Ignore
+import com.manage.shopkentaurkz.core.roomDataBase.for_horse.ForHorseEntity
 
 
 data class ForHorseProduct(
@@ -43,5 +45,9 @@ data class ForHorseProduct(
         override fun newArray(size: Int): Array<ForRiderProduct?> {
             return arrayOfNulls(size)
         }
+    }
+    @Ignore
+    fun toHorseEntity(): ForHorseEntity {
+        return ForHorseEntity(0, name!!, description!!, sizes!!, price, image!!, categories!!)
     }
 }

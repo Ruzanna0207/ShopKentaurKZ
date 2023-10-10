@@ -62,26 +62,14 @@
         app:lottie_fileName="animation_loading.json"
         app:lottie_loop="true" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationViewMainSwipe"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_rec_view"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="animation_swipe_orange.json"
-        app:lottie_loop="true" />
-
     <ImageView
         android:id="@+id/inst"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:src="@drawable/ic_instagram_logo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
