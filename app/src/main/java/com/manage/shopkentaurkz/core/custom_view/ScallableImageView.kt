@@ -147,4 +147,3 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : AppCompatImageV
         scaleAnimator.start()
     }
 }
-

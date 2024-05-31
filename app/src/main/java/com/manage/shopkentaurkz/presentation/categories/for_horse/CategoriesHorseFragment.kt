@@ -41,22 +41,23 @@ class CategoriesHorseFragment : Fragment() {
     ): View {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         binding.animationViewMain.playAnimation()
-        viewModel.getProductsForHorse()
-        viewModel.getTagsHorse()
+        viewModel.onCreate()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUi()
+        setupOnBackClickListeners()
+    }
 
+    private fun setupUi() {
         fetchButtons()
         fetchCategoriesHorse()
-        setupOnBackClickListeners()
     }
 
     //фун-я определяет адаптер для загрузки списка категории
     private fun fetchCategoriesHorse() = with(binding) {
-
         cathegoriesRecView.adapter = categoriesAdapterForHorse
 
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -73,7 +74,6 @@ class CategoriesHorseFragment : Fragment() {
 
     //фун-я определяет адаптер для кнопок-категорий
     private fun fetchButtons() = with(binding) {
-
         buttonsAdapter = ButtonsAdapter { tag ->
             searchForTag(tag)
         }
@@ -94,7 +94,6 @@ class CategoriesHorseFragment : Fragment() {
 
     //обработка нажатий для кнопки назад из категорий
     private fun setupOnBackClickListeners() {
-
         binding.pic.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
@@ -102,7 +101,6 @@ class CategoriesHorseFragment : Fragment() {
 
     //фун-я определяет поиск по тегу при помощи кнопок
     private fun searchForTag(tag: String) {
-
         val newList = listCategoryHorse.filter { it?.categories!!.contains(tag) }
         categoriesAdapterForHorse.products = newList
         categoriesAdapterForHorse.notifyDataSetChanged()

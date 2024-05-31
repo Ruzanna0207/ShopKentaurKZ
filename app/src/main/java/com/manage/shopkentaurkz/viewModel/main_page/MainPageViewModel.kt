@@ -6,28 +6,28 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.room.Room
-import com.manage.shopkentaurkz.data.main_page.MainPageRepositoryImpl
 import com.manage.shopkentaurkz.core.data_classes.ProductCategories
-import com.manage.shopkentaurkz.core.roomDataBase.main_page.ProductsDatabase
+import com.manage.shopkentaurkz.data.main_page.MainPageRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class MainPageViewModel(application: Application) : AndroidViewModel(application) {
-
     private val repository = MainPageRepositoryImpl(application)
 
     private var _currentCategories = MutableLiveData<List<ProductCategories?>>()
     val currentCategories: LiveData<List<ProductCategories?>> = _currentCategories
 
     //ссобщение об ошибке для пользователя
-    var error = MutableLiveData<String>()
+    private var error = MutableLiveData<String>()
 
+    fun onCraete() {
+        getCategories()
+    }
 
     //получ-е категорий товаров
-    fun getCategories() {
+    private fun getCategories() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val category = repository.getCategories()
@@ -57,4 +57,3 @@ class MainPageViewModel(application: Application) : AndroidViewModel(application
         }
     }
 }
-

@@ -31,17 +31,18 @@ class FragmentProductRiderDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+        setupClickListeners()
     }
 
     private fun setupViews() = with(binding) {
-
         addImages()
 
         nameProduct.text = details?.name
         descriptionProduct.text = details?.description
         priceProduct.text = "${details?.price?.toInt()}тг"
         compoundProduct.text = "Размеры: ${details?.sizes?.joinToString()}"
-
+    }
+    private fun setupClickListeners() = with(binding) {
         //при нажатии на задний фон - фрагмент закроется
         clickInterceptor.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()

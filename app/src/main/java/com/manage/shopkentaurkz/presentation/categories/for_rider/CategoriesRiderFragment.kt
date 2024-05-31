@@ -16,7 +16,6 @@ import com.manage.shopkentaurkz.core.data_classes.ForRiderProduct
 import com.manage.shopkentaurkz.databinding.FragmentCategoriesBinding
 import com.manage.shopkentaurkz.viewModel.for_rider.ForRiderViewModel
 
-
 class CategoriesRiderFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var buttonsAdapter: ButtonsAdapter
@@ -42,8 +41,7 @@ class CategoriesRiderFragment : Fragment() {
     ): View {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         binding.animationViewMain.playAnimation()
-        viewModel.getProductsForRider()
-        viewModel.getTagsRider()
+        viewModel.onCreate()
         return binding.root
     }
 

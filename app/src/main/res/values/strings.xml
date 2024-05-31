@@ -2,4 +2,8 @@
     <string name="app_name">Shop Kentaur KZ</string>
     <string name="kentaur_kz">Добро пожаловать в каталог KENTAUR KZ!</string>
     <string name="for_horse">Амуниция для лошади</string>
+    <string name="feeding_horse">Подкормки для лошади</string>
+    <string name="all_for_horse">Все для лошади</string>
+    <string name="all_for_rider">Все для всадника</string>
+    <string name="all_for_feeding">Кормовые добавки</string>
 </resources>

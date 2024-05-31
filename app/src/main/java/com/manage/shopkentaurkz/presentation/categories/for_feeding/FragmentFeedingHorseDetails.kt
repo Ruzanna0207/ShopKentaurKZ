@@ -28,10 +28,10 @@ class FragmentFeedingHorseDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+        setupClickListeners()
     }
 
     private fun setupViews() = with(binding) {
-
         Glide.with(requireContext())
             .load(details?.image)
             .optionalCenterCrop()
@@ -41,9 +41,10 @@ class FragmentFeedingHorseDetails : Fragment() {
         "${details?.price?.toInt()}тг".also { priceFeeding.text = it }
 
         descriptionFeeding.text = details?.description
-
         compoundFeeding.text = details?.compound
+    }
 
+    private fun setupClickListeners() = with(binding) {
         //при нажатии на задний фон или крестик - фрагмент закроется
         clickInterceptor.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()

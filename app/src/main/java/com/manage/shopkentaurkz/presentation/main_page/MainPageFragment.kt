@@ -18,7 +18,6 @@ import com.manage.shopkentaurkz.presentation.categories.for_rider.CategoriesRide
 import com.manage.shopkentaurkz.viewModel.main_page.MainPageViewModel
 
 class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
-
     private lateinit var binding: FragmentMainPageBinding
     private lateinit var adapter: MainPageAdapter
     private val viewModel: MainPageViewModel by viewModels()
@@ -30,7 +29,7 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
     ): View {
         binding = FragmentMainPageBinding.inflate(inflater, container, false)
         binding.animationViewMain.playAnimation()
-        viewModel.getCategories()
+        viewModel.onCraete()
         return binding.root
     }
 
@@ -38,6 +37,7 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         getAllCategories()
+        setupClickListeners()
     }
 
     //опред-ие основного ui, загрузка значений
@@ -51,8 +51,9 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
             .load("https://www.dropbox.com/scl/fi/6erti07skz813s886lm25/kentaurLogo.jpg?rlkey=7jxah2x5h9rzpww3c8jwr1j9d&raw=1")
             .fitCenter()
             .into(logo)
+    }
 
-        //открытие инстаграм
+    private fun setupClickListeners() = with(binding) {
         inst.setOnClickListener {
             openInstagramProfile()
         }
@@ -77,27 +78,24 @@ class MainPageFragment : androidx.fragment.app.Fragment(), Clickable {
     //при нажатии на карточку группы товаров
     override fun onClick(tag: String) {
         when {
-            (tag == "Все для лошади") -> {
+            (tag == getString(R.string.all_for_horse)) -> {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.frame, CategoriesHorseFragment())
                     .addToBackStack(null)
                     .commit()
             }
-
-            (tag == "Все для всадника") -> {
+            (tag == getString(R.string.all_for_rider)) -> {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.frame, CategoriesRiderFragment())
                     .addToBackStack(null)
                     .commit()
             }
-
-            (tag == "Кормовые добавки") -> {
+            (tag == getString(R.string.all_for_feeding)) -> {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.frame, CategoriesFeedingFragment())
                     .addToBackStack(null)
                     .commit()
             }
-
             else -> {}
         }
     }
