@@ -55,6 +55,7 @@ class ForFeedingRepositoryImpl(context: Context) : ForFeedingRepository {
                 }
             }
         }
+
         return if (savedEntity == categoriesList) {
             Log.i("bd", "бд $savedEntity")
             savedEntity.toMutableList()

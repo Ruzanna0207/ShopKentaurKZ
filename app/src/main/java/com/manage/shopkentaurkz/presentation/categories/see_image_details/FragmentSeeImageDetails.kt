@@ -26,12 +26,10 @@ class FragmentSeeImageDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupViews()
     }
 
     private fun setupViews() = with(binding) {
-
         Glide.with(requireContext())
             .load(details)
             .optionalCenterCrop()

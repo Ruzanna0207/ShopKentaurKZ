@@ -12,40 +12,41 @@ import kotlinx.coroutines.tasks.await
 
 class MainPageRepositoryImpl(context: Context) : MainPageRepository {
     private val roomDatabase = Room
-        .databaseBuilder(context, ProductsDatabase::class.java, "products_database") //создание БД
+        .databaseBuilder(context, ProductsDatabase::class.java, "products_database")
         .build()
 
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
-
     override suspend fun getCategories(): List<ProductCategories> {
         val savedEntity = roomDatabase.productCategoriesDao().getAllProducts().map { it.toProductCategories() }
         Log.i("bd", "бд $savedEntity")
-        try {
+
+        val categoriesList = try {
             val snapshot = database.child("allCategories").get().await()
 
-            val categoriesList = mutableListOf<ProductCategories>()
+            val newCategoriesList = mutableListOf<ProductCategories>()
 
             if (snapshot.exists()) {
                 for (categorySnapshot in snapshot.children) {
                     val category = categorySnapshot.getValue(ProductCategories::class.java)
                     category?.let {
-                        categoriesList.add(it)
+                        newCategoriesList.add(it)
                         roomDatabase.productCategoriesDao().insert(it.toProductEntity())
                     }
                 }
             }
-
-            return if (savedEntity == categoriesList) {
-                Log.i("bd", "бд $savedEntity")
-                savedEntity
-            } else {
-                Log.i("bd", categoriesList.toString())
-                categoriesList
-            }
+            newCategoriesList
         } catch (e: Exception) {
             Log.e("bd", "Error fetching categories: ${e.message}", e)
-            return emptyList()
+            emptyList()
+        }
+
+        return if (savedEntity == categoriesList) {
+            Log.i("bd", "бд $savedEntity")
+            savedEntity
+        } else {
+            Log.i("bd", categoriesList.toString())
+            categoriesList
         }
     }
 }

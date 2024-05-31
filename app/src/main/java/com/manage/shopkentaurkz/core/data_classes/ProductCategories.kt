@@ -14,4 +14,3 @@ data class ProductCategories(
         return ProductEntity(0, imageUrl, name, description)
     }
 }
-

@@ -16,7 +16,6 @@ import com.manage.shopkentaurkz.core.data_classes.FeedingCategories
 import com.manage.shopkentaurkz.databinding.FragmentCategoriesBinding
 import com.manage.shopkentaurkz.viewModel.for_feeding.ForFeedingViewModel
 
-
 class CategoriesFeedingFragment : Fragment() {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var buttonsAdapter: ButtonsAdapter
@@ -42,27 +41,24 @@ class CategoriesFeedingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-        viewModel.getFeeding()
-        viewModel.getTagsHorse()
+        viewModel.onCreate()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        showUi()
-        fetchButtons()
-        fetchCategoriesRider()
+        setupUi()
         setupOnBackClickListeners()
     }
 
-    private fun showUi() {
-        binding.info.text = "Подкормки для лошади"
+    private fun setupUi() {
+        binding.info.text = getString(R.string.feeding_horse)
+        fetchButtons()
+        fetchCategoriesRider()
     }
 
     //фун-я определяет адаптер для категорий
     private fun fetchCategoriesRider() = with(binding) {
-
         cathegoriesRecView.adapter = categoriesAdapterForFeedingHorse
 
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -108,7 +104,6 @@ class CategoriesFeedingFragment : Fragment() {
 
     ////фун-я определяет поиск по тегу при помощи кнопок
     private fun searchForTag(tag: String) {
-
         val newList = listCategoryFeeding
         categoriesAdapterForFeedingHorse.products = newList
         categoriesAdapterForFeedingHorse.notifyDataSetChanged()
@@ -119,4 +114,3 @@ class CategoriesFeedingFragment : Fragment() {
         animationViewMain.visibility = View.GONE
     }
 }
-

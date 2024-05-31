@@ -14,7 +14,6 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class ForRiderViewModel(application: Application) : AndroidViewModel(application) {
-
     private val repositoryRider = ForRiderRepositoryImpl(application)
 
     private var _forRider = MutableLiveData<List<ForRiderProduct?>>()
@@ -24,11 +23,15 @@ class ForRiderViewModel(application: Application) : AndroidViewModel(application
     val tagsRider: LiveData<List<String>> = _tagsRider
 
     //ссобщение об ошибке для пользователя
-    var error = MutableLiveData<String>()
+    private var error = MutableLiveData<String>()
 
+    fun onCreate() {
+        getProductsForRider()
+        getTagsRider()
+    }
 
     //получ-е товаров категории
-    fun getProductsForRider() {
+    private fun getProductsForRider() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val category = repositoryRider.getCategoriesForRider()
@@ -59,7 +62,7 @@ class ForRiderViewModel(application: Application) : AndroidViewModel(application
     }
 
 //получ-е тегов
-    fun getTagsRider() {
+private fun getTagsRider() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val tags = repositoryRider.getTags()
@@ -88,4 +91,3 @@ class ForRiderViewModel(application: Application) : AndroidViewModel(application
         }
     }
 }
-

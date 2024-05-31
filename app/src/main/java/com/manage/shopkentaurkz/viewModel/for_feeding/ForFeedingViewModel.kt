@@ -14,7 +14,6 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class ForFeedingViewModel(application: Application) : AndroidViewModel(application) {
-
     private val repositoryFeeding = ForFeedingRepositoryImpl(application)
 
     private var _forFeeding = MutableLiveData<List<FeedingCategories?>>()
@@ -24,11 +23,15 @@ class ForFeedingViewModel(application: Application) : AndroidViewModel(applicati
     val tagsFeeding: LiveData<List<String>> = _tagsFeeding
 
     //ссобщение об ошибке для пользователя
-    var error = MutableLiveData<String>()
+    private var error = MutableLiveData<String>()
 
+    fun onCreate() {
+        getFeeding()
+        getTagsHorse()
+    }
 
     //получ-е товаров категории
-    fun getFeeding() {
+    private fun getFeeding() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val category = repositoryFeeding.getFeeding()
@@ -58,9 +61,8 @@ class ForFeedingViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-
     //получ-е тегов
-     fun getTagsHorse() {
+    private fun getTagsHorse() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val tags = repositoryFeeding.getTags()
@@ -89,4 +91,3 @@ class ForFeedingViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 }
-

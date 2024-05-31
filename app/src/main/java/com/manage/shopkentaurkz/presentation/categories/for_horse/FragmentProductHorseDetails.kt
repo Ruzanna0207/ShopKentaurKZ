@@ -31,25 +31,27 @@ class FragmentProductHorseDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+        setupClickListeners()
     }
 
     //опр-у ui
     private fun setupViews() = with(binding) {
-
         addImages()
         nameProduct.text = details?.name
         descriptionProduct.text = details?.description
         priceProduct.text = "${details?.price?.toInt()}тг"
         compoundProduct.text = "Размеры: ${details?.sizes?.joinToString()}"
+    }
 
-        // При нажатии на задний фон - фрагмент закроется
-        clickInterceptor.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-
+    private fun setupClickListeners() = with(binding) {
         card.setOnClickListener { }
 
         pic.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        // При нажатии на задний фон - фрагмент закроется
+        clickInterceptor.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
